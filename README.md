@@ -16,7 +16,7 @@
 3. Открыть терминал в папке
 4. Запустить: `python test.py`
 ## Структура
--`alabuba_RU` - основные функции
+-`alabuba.py` - основные функции
 -`test.py` - примеры использования
 ## Автор
 [Diman_Banan](https://github.com/klutkindmitrij-ops)
