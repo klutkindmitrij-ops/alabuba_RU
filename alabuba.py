@@ -53,12 +53,16 @@ def sorting_goods(list_goods):
       print(f"{product["date"]}")
  return sorted_price,sorted_kol,sorted_data
 
-def residue_filter(list_goods,remains):
+def residue_filter(list_goods,remains,name):
     if not isinstance(list_goods,list):
             print("Введите в виде списка, в котором будут словари!")
             return
-    print(f"Список товаров с определененым условием количества ({remains}):{[int(x["kol"]) for x in list_goods if int(x["kol"]) <= int(remains)]}")
-    return
+    if name == "kol":
+     print(f"Список товаров с определененым условием количества ({remains}): {[int(x["kol"]) for x in list_goods if int(x["kol"]) <= int(remains)]}")
+     return
+    if name == "price":
+     print(f"Список товаров с определененым условием цены ({remains}): {[int(x["price"]) for x in list_goods if int(x["price"]) <= int(remains)]}")
+     return
 # Клиенты и сотрудники
 def find_client(clients,name):
     if not isinstance(clients,list):
@@ -70,8 +74,11 @@ def find_client(clients,name):
     return None
 
 def salary_with_bonus(salary, proc):
+    if proc < 0 or proc > 100:
+     print("Введите проценты от 0 до 100 !")
+     return
     x = salary / 100
     proc *= x
     total = salary + proc
-    print(f"Зарплата работника, с премией ({proc} %) равна: {total} рублей")
+    print(f"Зарплата работника, с премией равна: {int(total)} рублей")
     return total
