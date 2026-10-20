@@ -5,26 +5,29 @@ def calculator_tax(salary):
     print(f"Зарплата работника с налогом, равна: {int(result)} рублей")
     return result
 
-def discount(price,percent):
+def discount(price, percent):
+    if percent < 0 or percent > 100:
+         print("Введите проценты от 0 до 100 !")
+         return
     discount = price / 100 * percent
     result = price - discount
     print(f"Товар со скидкой будет: {int(result)}")
     return result
 
-def all_products(product,full):
+def all_products(product, full):
       product *= full
       print(f"Сумма за все товары, равна: {int(product)} рублей")
       return product
 
 def average_amount(lis):
-      if not isinstance(lis,list):
+      if not isinstance(lis, list):
        print("Введите в виде списка!")
        return
       result = sum(lis) / len(lis)
-      print(f"Средний чек за товар: {int(result)} рублей")
+      print(f"Средний чек за товар: {round(result,2)} рублей")
       return lis
 
-def profitability(all,all_salaries,all_products):
+def profitability(all,all_salaries, all_products):
     result = all - (all_salaries + all_products)
     print(f"Итог за месяц(включая зарплату работников и цены на товары): {result} рублей")
     if result <= 0:
@@ -34,12 +37,12 @@ def profitability(all,all_salaries,all_products):
 
 # Логистика и склад
 def sorting_goods(list_goods):
- if not isinstance(list_goods,list):
+ if not isinstance(list_goods, list):
         print("Введите в виде списка, в котором будут словари!")
         return
- sorted_price = sorted(list_goods, key=lambda x: x["price"],reverse=True)
- sorted_kol = sorted(list_goods, key=lambda x: x["kol"],reverse=True)
- sorted_data = sorted(list_goods, key=lambda x: x["date"],reverse=True)
+ sorted_price = sorted(list_goods, key=lambda x: x["price"], reverse=True)
+ sorted_kol = sorted(list_goods, key=lambda x: x["kol"], reverse=True)
+ sorted_data = sorted(list_goods, key=lambda x: x["date"], reverse=True)
  print("Сортировка по цене:")
  for product in sorted_price:
      print(f"{product["price"]} рублей")
@@ -53,8 +56,8 @@ def sorting_goods(list_goods):
       print(f"{product["date"]}")
  return sorted_price,sorted_kol,sorted_data
 
-def residue_filter(list_goods,remains,name):
-    if not isinstance(list_goods,list):
+def residue_filter(list_goods, remains, name):
+    if not isinstance(list_goods, list):
             print("Введите в виде списка, в котором будут словари!")
             return
     if name == "kol":
@@ -63,8 +66,9 @@ def residue_filter(list_goods,remains,name):
     if name == "price":
      print(f"Список товаров с определененым условием цены ({remains}): {[int(x["price"]) for x in list_goods if int(x["price"]) <= int(remains)]}")
      return
+
 # Клиенты и сотрудники
-def find_client(clients,name):
+def find_client(clients, name):
     if not isinstance(clients,list):
         print("Введите в виде списка, в котором будут словари!")
         return 
